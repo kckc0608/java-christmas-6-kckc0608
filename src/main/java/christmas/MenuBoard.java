@@ -3,7 +3,7 @@ package christmas;
 import java.util.HashMap;
 
 public class MenuBoard {
-    private static HashMap<String, Menu> menuBoard;
+    private static final HashMap<String, Menu> menuBoard = new HashMap<>();
 
     public static Menu getMenuByName(String name) {
         Menu menu  = menuBoard.get(name);
