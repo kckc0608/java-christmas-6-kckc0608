@@ -50,6 +50,8 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    // TODO: 주말인데 주말에 할인 적용되는 상품을 주문하지 않았을 경우, 0원이라도 할인 혜택 출력에 포함되어야 함.
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
