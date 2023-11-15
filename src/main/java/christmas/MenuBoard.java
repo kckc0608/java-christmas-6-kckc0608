@@ -17,4 +17,8 @@ public class MenuBoard {
     public static void addNewMenu(String name, Menu menu) {
         menuBoard.put(name, menu);
     }
+
+    public static void clearBoard() {
+        menuBoard.clear();
+    }
 }
