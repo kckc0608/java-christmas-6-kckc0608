@@ -95,7 +95,16 @@ public class EventPlanner {
     }
 
     private void applyWeekendSaleEvent() {
+        int saleAmount = 0;
+        Map<Menu, Integer> order = this.order.getOrder();
+        for (Menu menu : order.keySet()) {
+            if (menu.getType() == Menu.Type.MAIN) {
+                saleAmount += (2023*order.get(menu));
+            }
+        }
 
+        Event weekendSaleEvent = new Event(EventType.WeekendSale, saleAmount);
+        appliedEvents.add(weekendSaleEvent);
     }
 
     private void applySpecialSaleEvent() {
