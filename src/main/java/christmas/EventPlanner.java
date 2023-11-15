@@ -47,6 +47,10 @@ public class EventPlanner {
     }
 
     private void applyEvent() {
+        int totalOrderPayment = order.getTotalOrderPayment();
+        if (totalOrderPayment < 10000) {
+            return;
+        }
         if (1 <= this.orderDate && orderDate <= 25) {
             applyChristmasDDaySaleEvent();
         }
