@@ -17,6 +17,7 @@ public class OutputView {
     public void printOrder(Order order) {
         System.out.println("<주문 메뉴>");
         order.printOrder();
+        System.out.println();
     }
 
     public void printTotalOrderPaymentBeforeSale(Order order) {
