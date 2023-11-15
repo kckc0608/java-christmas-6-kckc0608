@@ -39,6 +39,19 @@ public class OutputView {
         System.out.println("없음\n");
     }
 
+    public void printAppliedEvents(List<Event> appliedEvents) {
+        System.out.println("<혜택 내역>");
+        if (appliedEvents.isEmpty()) {
+            System.out.println("없음\n");
+            return;
+        }
+
+        for (Event event : appliedEvents) {
+            System.out.println(event.getEventType().toString() + ": -" + event.getApplyAmount() + "원");
+        }
+        System.out.println();
+    }
+
     private String convertNumberToAmountFormattedString(int number) {
         return NumberFormat.getInstance().format(number);
     }

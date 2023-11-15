@@ -8,7 +8,38 @@ import java.util.List;
 import java.util.Map;
 
 public class EventPlanner {
-    public enum EventType { ChristmasDDaySale, WeekdaySale, WeekendSale, SpecialSale, GiftEvent }
+    public enum EventType {
+        ChristmasDDaySale {
+            @Override
+            public String toString() {
+                return "크리스마스 디데이 할인";
+            }
+        },
+        WeekdaySale {
+            @Override
+            public String toString() {
+                return "평일 할인";
+            }
+        },
+        WeekendSale {
+            @Override
+            public String toString() {
+                return "주말 할인";
+            }
+        },
+        SpecialSale {
+            @Override
+            public String toString() {
+                return "특별 할인";
+            }
+        },
+        GiftEvent {
+            @Override
+            public String toString() {
+                return "증정 이벤트";
+            }
+        }
+    }
 
     private final int orderDate;
     private final Order order;
@@ -25,6 +56,7 @@ public class EventPlanner {
         outputView.printTotalOrderPaymentBeforeSale(order);
         applyEvent();
         outputView.printGiftMenu(appliedEvents);
+        outputView.printAppliedEvents(appliedEvents);
     }
 
     private void initPlanner() {

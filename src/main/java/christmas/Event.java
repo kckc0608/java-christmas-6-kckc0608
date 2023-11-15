@@ -18,4 +18,9 @@ public class Event {
     public int getApplyAmount() {
         return applyAmount;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
