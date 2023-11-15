@@ -78,6 +78,24 @@ public class OutputView {
         System.out.println(convertNumberToAmountFormattedString(paymentAmount) + "원\n");
     }
 
+    public void printBadgeToGet(List<Event> appliedEvents) {
+        int totalAppliedEventsAmount = getTotalAppliedEventsAmount(appliedEvents);
+        System.out.println("<12월 이벤트 배지>");
+        if (totalAppliedEventsAmount >= 20000) {
+            System.out.println("산타");
+            return;
+        }
+        if (totalAppliedEventsAmount >= 10000) {
+            System.out.println("트리");
+            return;
+        }
+        if (totalAppliedEventsAmount >= 5000) {
+            System.out.println("별");
+            return;
+        }
+        System.out.println("없음");
+    }
+
     private int getTotalAppliedEventsAmount(List<Event> appliedEvents) {
         int totalAppliedEventsAmount = 0;
 

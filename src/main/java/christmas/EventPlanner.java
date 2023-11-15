@@ -59,6 +59,7 @@ public class EventPlanner {
         outputView.printAppliedEvents(appliedEvents);
         outputView.printTotalAppliedEventsAmount(appliedEvents);
         outputView.printWillPaymentAfterSale(order, appliedEvents);
+        outputView.printBadgeToGet(appliedEvents);
     }
 
     private void initPlanner() {
