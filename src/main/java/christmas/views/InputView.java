@@ -1,9 +1,12 @@
 package christmas.views;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Menu;
+import christmas.MenuBoard;
 import christmas.Order;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InputView {
@@ -22,7 +25,24 @@ public class InputView {
     }
 
     private Map<Menu,Integer> validateAndConvertInputToOrderMap(String orderInput) {
-        // TODO: Implement
-        return new HashMap<Menu, Integer>();
+        List<String> menuOrders = Arrays.stream(orderInput.split(",")).toList();
+
+        HashMap<Menu, Integer> orderMap = new HashMap<>();
+        for (String menuOrder : menuOrders) {
+            List<String> order =  Arrays.stream(menuOrder.split("-")).toList();
+            String menuName = order.get(0);
+            int menuCount;
+            try {
+                menuCount = Integer.parseInt(order.get(1));
+            } catch (NumberFormatException ex) {
+                // TODO : Print Error Message
+                throw new IllegalArgumentException();
+            }
+
+            Menu menu = MenuBoard.getMenuByName(menuName);
+
+            orderMap.put(menu, menuCount);
+        }
+        return orderMap;
     }
 }

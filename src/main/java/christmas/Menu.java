@@ -2,6 +2,11 @@ package christmas;
 
 public class Menu {
     public enum Type { APPETIZER, MAIN, DESERT, DRINK }
+
+    public String getName() {
+        return name;
+    }
+
     private String name;
     private int price;
     private Type type;
