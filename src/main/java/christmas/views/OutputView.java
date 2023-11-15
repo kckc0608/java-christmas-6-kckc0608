@@ -11,8 +11,8 @@ public class OutputView {
         System.out.println(WELCOME_MESSAGE);
     }
 
-    public void printBenefitsInfo() {
-        System.out.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
+    public void printBenefitsInfo(int date) {
+        System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
     }
     public void printOrder(Order order) {
         System.out.println("<주문 메뉴>");

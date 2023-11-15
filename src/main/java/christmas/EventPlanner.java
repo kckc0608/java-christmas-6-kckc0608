@@ -11,7 +11,7 @@ public class EventPlanner {
         outputView.printWelcome();
         int date = inputView.readDate();
         Order order = inputView.readOrder();
-        outputView.printBenefitsInfo();
+        outputView.printBenefitsInfo(date);
         outputView.printOrder(order);
         outputView.printTotalOrderPaymentBeforeSale(order);
     }
