@@ -11,7 +11,7 @@ public class Order {
 
     public void printOrder() {
         for (Menu orderMenu : order.keySet()) {
-            System.out.println(orderMenu.getName() + " " + order.get(orderMenu.getName()) + "개\n");
+            System.out.println(orderMenu.getName() + " " + order.get(orderMenu) + "개");
         }
     }
 }
