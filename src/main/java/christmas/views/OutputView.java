@@ -25,7 +25,7 @@ public class OutputView {
 
     public void printTotalOrderPaymentBeforeSale(Order order) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(convertNumberToAmountFormattedString(order.getTotalOrderPayment()) + "원");
+        System.out.println(convertNumberToAmountFormattedString(order.getTotalOrderPayment()) + "원\n");
     }
 
     public void printGiftMenu(List<Event> appliedEvents) {
