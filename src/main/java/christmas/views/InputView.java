@@ -46,6 +46,7 @@ public class InputView {
 
         HashMap<Menu, Integer> orderMap = new HashMap<>();
         boolean isOnlyDrink = true;
+        int orderCount = 0;
         for (String menuOrder : menuOrders) {
             List<String> order =  Arrays.stream(menuOrder.split("-")).toList();
             String menuName = order.get(0);
@@ -69,11 +70,18 @@ public class InputView {
             if (orderMap.containsKey(menu)) {
                 throw new IllegalArgumentException();
             }
+
+            orderCount += menuCount;
             orderMap.put(menu, menuCount);
         }
 
         if (isOnlyDrink) {
             System.out.println("[ERROR] 음료만 주문할 수 없습니다.");
+            throw new IllegalArgumentException();
+        }
+
+        if (orderCount > 20) {
+            System.out.println("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
             throw new IllegalArgumentException();
         }
 
