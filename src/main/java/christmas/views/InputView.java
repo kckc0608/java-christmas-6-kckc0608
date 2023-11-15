@@ -28,7 +28,16 @@ public class InputView {
     public Order readOrder() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         String input = Console.readLine();
-        Map<Menu, Integer> orderMap = validateAndConvertInputToOrderMap(input);
+        Map<Menu, Integer> orderMap;
+        while (true) {
+            try {
+                orderMap = validateAndConvertInputToOrderMap(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                continue;
+            }
+            break;
+        }
         return new Order(orderMap);
     }
 
@@ -43,12 +52,10 @@ public class InputView {
             try {
                 menuCount = Integer.parseInt(order.get(1));
             } catch (NumberFormatException ex) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
                 throw new IllegalArgumentException();
             }
 
             if (menuCount < 1) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
                 throw  new IllegalArgumentException();
             }
 
