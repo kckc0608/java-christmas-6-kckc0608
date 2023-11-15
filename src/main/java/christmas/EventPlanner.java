@@ -54,12 +54,27 @@ public class EventPlanner {
         if (1 <= this.orderDate && orderDate <= 25) {
             applyChristmasDDaySaleEvent();
         }
+
+        applyWeekendSaleOrWeekDaySaleByOrderDate();
     }
 
     private void applyChristmasDDaySaleEvent() {
         int saleAmount = 1000 + (orderDate - 1)*100;
         Event event = new Event(EventType.ChristmasDDaySale, saleAmount);
         appliedEvents.add(event);
+    }
+
+    private void applyWeekendSaleOrWeekDaySaleByOrderDate() {
+        if (checkOrderDateIsWeekend()) {
+            applyWeekendSaleEvent();
+            return;
+        }
+        applyWeekDaySaleEvent();
+    }
+
+    private boolean checkOrderDateIsWeekend() {
+        List<Integer> weekendDates = List.of(1,2,8,9,15,16,22,23,29,30);
+        return weekendDates.contains(orderDate);
     }
 
     private void applyWeekDaySaleEvent() {
