@@ -14,4 +14,14 @@ public class Order {
             System.out.println(orderMenu.getName() + " " + order.get(orderMenu) + "개");
         }
     }
+
+    public int getTotalOrderPayment() {
+        int total = 0;
+        for (Menu orderMenu : order.keySet()) {
+            int price = orderMenu.getPrice();
+            int amount = order.get(orderMenu);
+            total += price*amount;
+        }
+        return total;
+    }
 }

@@ -7,6 +7,10 @@ public class Menu {
         return name;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     private String name;
     private int price;
     private Type type;

@@ -13,6 +13,7 @@ public class EventPlanner {
         Order order = inputView.readOrder();
         outputView.printBenefitsInfo();
         outputView.printOrder(order);
+        outputView.printTotalOrderPaymentBeforeSale(order);
     }
 
     private void initPlanner() {

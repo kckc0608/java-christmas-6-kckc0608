@@ -2,6 +2,8 @@ package christmas.views;
 
 import christmas.Order;
 
+import java.text.NumberFormat;
+
 public class OutputView {
     private final String WELCOME_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
 
@@ -16,5 +18,13 @@ public class OutputView {
         System.out.println("<주문 메뉴>");
         order.printOrder();
     }
-    // ...
+
+    public void printTotalOrderPaymentBeforeSale(Order order) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(convertNumberToAmountFormattedString(order.getTotalOrderPayment()) + "원");
+    }
+
+    private String convertNumberToAmountFormattedString(int number) {
+        return NumberFormat.getInstance().format(number);
+    }
 }
