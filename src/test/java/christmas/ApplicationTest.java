@@ -43,10 +43,91 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 날짜_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 날짜_예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 날짜_예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("32");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
     void 주문_예외_테스트() {
         assertSimpleTest(() -> {
             runException("3", "제로콜라-a");
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-21");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-0");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_없는_메뉴_주문() {
+        assertSimpleTest(() -> {
+            runException("3", "제로사이다-20");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_음료만_주문1() {
+        assertSimpleTest(() -> {
+            runException("3", "레드와인-1");
+            assertThat(output()).contains(
+                "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
+                "[ERROR] 음료만 주문할 수 없습니다."
+            );
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_음료만_주문2() {
+        assertSimpleTest(() -> {
+            runException("3", "레드와인-1,샴페인-1");
+            assertThat(output()).contains(
+                "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
+                "[ERROR] 음료만 주문할 수 없습니다."
+            );
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_주문_갯수_초과() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-10,샴페인-11");
+            assertThat(output()).contains(
+                "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
+                "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다."
+            );
         });
     }
 
