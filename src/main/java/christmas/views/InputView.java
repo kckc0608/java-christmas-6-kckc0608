@@ -45,6 +45,7 @@ public class InputView {
         List<String> menuOrders = Arrays.stream(orderInput.split(",")).toList();
 
         HashMap<Menu, Integer> orderMap = new HashMap<>();
+        boolean isOnlyDrink = true;
         for (String menuOrder : menuOrders) {
             List<String> order =  Arrays.stream(menuOrder.split("-")).toList();
             String menuName = order.get(0);
@@ -60,11 +61,22 @@ public class InputView {
             }
 
             Menu menu = MenuBoard.getMenuByName(menuName);
+
+            if (menu.getType() != Menu.Type.DRINK) {
+                isOnlyDrink = false;
+            }
+
             if (orderMap.containsKey(menu)) {
                 throw new IllegalArgumentException();
             }
             orderMap.put(menu, menuCount);
         }
+
+        if (isOnlyDrink) {
+            System.out.println("[ERROR] 음료만 주문할 수 없습니다.");
+            throw new IllegalArgumentException();
+        }
+
         return orderMap;
     }
 
