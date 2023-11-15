@@ -12,9 +12,17 @@ import java.util.Map;
 public class InputView {
     public int readDate() {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
-        String input = Console.readLine();
-        // validate(input);
-        return Integer.parseInt(input);
+        int date;
+        while (true) {
+            String input = Console.readLine();
+            try {
+                date = validateAndConvertDateInputToOrderDate(input);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            break;
+        }
+        return date;
     }
 
     public Order readOrder() {
@@ -44,5 +52,20 @@ public class InputView {
             orderMap.put(menu, menuCount);
         }
         return orderMap;
+    }
+
+    private int validateAndConvertDateInputToOrderDate(String dateInput) {
+        int orderDate;
+        try {
+            orderDate = Integer.parseInt(dateInput);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 날짜는 숫자입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
+        }
+
+        if (orderDate < 1 || 31 < orderDate) {
+            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
+        }
     }
 }
