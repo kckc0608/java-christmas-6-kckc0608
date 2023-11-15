@@ -53,16 +53,13 @@ public class OutputView {
     }
 
     public void printTotalAppliedEventsAmount(List<Event> appliedEvents) {
-        // 총 혜택 금액의 경우에는, 혜택 내역과 달리 금액이 있는지를 보는 거니까, 0원이면 없음을 출력하도록 하는 게 맞을 것 같다.
         System.out.println("<총혜택 금액>");
         int totalAppliedEventsAmount = getTotalAppliedEventsAmount(appliedEvents);
-
-        if (totalAppliedEventsAmount == 0) {
-            System.out.println("없음\n");
+        if (totalAppliedEventsAmount > 0) {
+            System.out.println("-" + totalAppliedEventsAmount + "원\n");
             return;
         }
-
-        System.out.println("-" + totalAppliedEventsAmount + "원\n");
+        System.out.println("0원\n");
     }
 
     public void printWillPaymentAfterSale(Order order, List<Event> appliedEvents) {
