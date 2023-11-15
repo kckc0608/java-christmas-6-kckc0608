@@ -53,7 +53,9 @@ public class InputView {
             }
 
             Menu menu = MenuBoard.getMenuByName(menuName);
-
+            if (orderMap.containsKey(menu)) {
+                throw new IllegalArgumentException();
+            }
             orderMap.put(menu, menuCount);
         }
         return orderMap;
