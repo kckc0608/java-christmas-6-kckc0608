@@ -1,40 +1,21 @@
 package christmas;
 
+import christmas.EventPlanner.EventType;
+
 public class Event {
-    private Order order;
-    private int orderDate;
+    private int applyAmount;
+    private EventType eventType;
 
-    private int saleAmount = 0;
-    private int giftAmount = 0;
-
-    public Event(Order order, int orderDate) {
-        this.order = order;
-        this.orderDate = orderDate;
+    public Event(EventType eventType, int applyAmount) {
+        this.eventType = eventType;
+        this.applyAmount = applyAmount;
     }
 
-    public void applyEvent() {
-        if (1 <= orderDate && orderDate <= 25) {
-            applyChristmasDDaySaleEvent();
-        }
+    public EventType getEventType() {
+        return eventType;
     }
 
-    private void applyChristmasDDaySaleEvent() {
-
-    }
-
-    private void applyWeekDaySaleEvent() {
-
-    }
-
-    private void applyWeekendSaleEvent() {
-
-    }
-
-    private void applySpecialSaleEvent() {
-
-    }
-
-    private void applyGiftEvent() {
-
+    public int getApplyAmount() {
+        return applyAmount;
     }
 }

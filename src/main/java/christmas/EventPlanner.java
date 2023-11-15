@@ -3,20 +3,30 @@ package christmas;
 import christmas.views.InputView;
 import christmas.views.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EventPlanner {
+    enum EventType { ChristmasDDaySale, WeekdaySale, WeekendSale, SpecialSale, GiftEvent }
+
+    private final int orderDate;
+    private final Order order;
+    private final List<Event> appliedEvents = new ArrayList<>();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
     public EventPlanner() {
         initPlanner();
         outputView.printWelcome();
-        int date = inputView.readDate();
-        Order order = inputView.readOrder();
-        outputView.printBenefitsInfo(date);
+        orderDate = inputView.readDate();
+        order = inputView.readOrder();
+        outputView.printBenefitsInfo(orderDate);
         outputView.printOrder(order);
         outputView.printTotalOrderPaymentBeforeSale(order);
+        applyEvent();
     }
 
     private void initPlanner() {
+        appliedEvents.clear();
         MenuBoard.clearBoard();
 
         MenuBoard.addNewMenu("양송이수프", new Menu("양송이수프", 6000, Menu.Type.APPETIZER));
@@ -34,5 +44,33 @@ public class EventPlanner {
         MenuBoard.addNewMenu("제로콜라", new Menu("제로콜라", 3000, Menu.Type.DRINK));
         MenuBoard.addNewMenu("레드와인", new Menu("레드와인", 60000, Menu.Type.DRINK));
         MenuBoard.addNewMenu("샴페인", new Menu("샴페인", 25000, Menu.Type.DRINK));
+    }
+
+    private void applyEvent() {
+        if (1 <= this.orderDate && orderDate <= 25) {
+            applyChristmasDDaySaleEvent();
+        }
+    }
+
+    private void applyChristmasDDaySaleEvent() {
+        int saleAmount = 1000 + (orderDate - 1)*100;
+        Event event = new Event(EventType.ChristmasDDaySale, saleAmount);
+        appliedEvents.add(event);
+    }
+
+    private void applyWeekDaySaleEvent() {
+
+    }
+
+    private void applyWeekendSaleEvent() {
+
+    }
+
+    private void applySpecialSaleEvent() {
+
+    }
+
+    private void applyGiftEvent() {
+
     }
 }
