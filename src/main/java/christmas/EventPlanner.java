@@ -52,11 +52,17 @@ public class EventPlanner {
         if (totalOrderPayment < 10000) {
             return;
         }
+
         if (1 <= this.orderDate && orderDate <= 25) {
             applyChristmasDDaySaleEvent();
         }
+
         if (totalOrderPayment >= 120000) {
             applyGiftEvent();
+        }
+
+        if (checkOrderDateIsSpecialDay()) {
+            applySpecialSaleEvent();
         }
 
         applyWeekendSaleOrWeekDaySaleByOrderDate();
@@ -108,7 +114,12 @@ public class EventPlanner {
     }
 
     private void applySpecialSaleEvent() {
+        appliedEvents.add(new Event(EventType.SpecialSale, 1000));
+    }
 
+    private boolean checkOrderDateIsSpecialDay() {
+        List<Integer> specialDates = List.of(3, 10, 17, 24, 25, 31);
+        return specialDates.contains(orderDate);
     }
 
     private void applyGiftEvent() {
