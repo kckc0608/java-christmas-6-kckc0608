@@ -13,7 +13,5 @@ public class Order {
         for (Menu orderMenu : order.keySet()) {
             System.out.println(orderMenu.getName() + " " + order.get(orderMenu.getName()) + "개\n");
         }
-//        타파스 1개
-//        제로콜라 1개
     }
 }

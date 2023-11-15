@@ -9,9 +9,10 @@ public class EventPlanner {
     public EventPlanner() {
         initPlanner();
         outputView.printWelcome();
-        inputView.readDate();
-        inputView.readOrder();
+        int date = inputView.readDate();
+        Order order = inputView.readOrder();
         outputView.printBenefitsInfo();
+        outputView.printOrder(order);
     }
 
     private void initPlanner() {
