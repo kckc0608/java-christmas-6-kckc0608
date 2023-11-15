@@ -54,6 +54,9 @@ public class EventPlanner {
         if (1 <= this.orderDate && orderDate <= 25) {
             applyChristmasDDaySaleEvent();
         }
+        if (totalOrderPayment >= 120000) {
+            applyGiftEvent();
+        }
 
         applyWeekendSaleOrWeekDaySaleByOrderDate();
     }
@@ -90,6 +93,8 @@ public class EventPlanner {
     }
 
     private void applyGiftEvent() {
-
+        int champagnePrice = MenuBoard.getMenuByName("샴페인").getPrice();
+        Event giftEvent = new Event(EventType.GiftEvent, champagnePrice);
+        appliedEvents.add(giftEvent);
     }
 }
