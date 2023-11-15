@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EventPlanner {
-    enum EventType { ChristmasDDaySale, WeekdaySale, WeekendSale, SpecialSale, GiftEvent }
+    public enum EventType { ChristmasDDaySale, WeekdaySale, WeekendSale, SpecialSale, GiftEvent }
 
     private final int orderDate;
     private final Order order;
@@ -24,6 +24,7 @@ public class EventPlanner {
         outputView.printOrder(order);
         outputView.printTotalOrderPaymentBeforeSale(order);
         applyEvent();
+        outputView.printGiftMenu(appliedEvents);
     }
 
     private void initPlanner() {
