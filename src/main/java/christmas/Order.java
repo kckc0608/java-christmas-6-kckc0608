@@ -1,5 +1,6 @@
 package christmas;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
@@ -23,5 +24,9 @@ public class Order {
             total += price*amount;
         }
         return total;
+    }
+
+    public Map<Menu, Integer> getOrder() {
+        return Map.copyOf(this.order);
     }
 }

@@ -11,6 +11,10 @@ public class Menu {
         return price;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     private String name;
     private int price;
     private Type type;

@@ -5,6 +5,7 @@ import christmas.views.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EventPlanner {
     enum EventType { ChristmasDDaySale, WeekdaySale, WeekendSale, SpecialSale, GiftEvent }
@@ -81,7 +82,16 @@ public class EventPlanner {
     }
 
     private void applyWeekDaySaleEvent() {
+        int saleAmount = 0;
+        Map<Menu, Integer> order = this.order.getOrder();
+        for (Menu menu : order.keySet()) {
+            if (menu.getType() == Menu.Type.DESERT) {
+                saleAmount += (2023*order.get(menu));
+            }
+        }
 
+        Event weekDaySaleEvent = new Event(EventType.WeekdaySale, saleAmount);
+        appliedEvents.add(weekDaySaleEvent);
     }
 
     private void applyWeekendSaleEvent() {
