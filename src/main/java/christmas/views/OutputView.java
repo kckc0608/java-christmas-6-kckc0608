@@ -14,7 +14,7 @@ public class OutputView {
     }
     public void printMenu(Order order) {
         System.out.println("<주문 메뉴>");
-        // order.printOrder();
+        order.printOrder();
     }
     // ...
 }
