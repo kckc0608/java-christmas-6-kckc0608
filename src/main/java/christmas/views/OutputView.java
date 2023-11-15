@@ -69,6 +69,19 @@ public class OutputView {
         System.out.println("-" + totalAppliedEventsAmount + "원\n");
     }
 
+    public void printWillPaymentAfterSale(Order order, List<Event> appliedEvents) {
+        int paymentAmount = order.getTotalOrderPayment();
+        System.out.println("<할인 후 예상 결제 금액>");
+        for (Event event : appliedEvents) {
+            if (event.getEventType() == EventPlanner.EventType.GiftEvent) {
+                continue;
+            }
+            paymentAmount -= event.getApplyAmount();
+        }
+
+        System.out.println(convertNumberToAmountFormattedString(paymentAmount) + "원\n");
+    }
+
     private String convertNumberToAmountFormattedString(int number) {
         return NumberFormat.getInstance().format(number);
     }
