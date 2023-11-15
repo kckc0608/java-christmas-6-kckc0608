@@ -18,6 +18,7 @@ public class InputView {
             try {
                 date = validateAndConvertDateInputToOrderDate(input);
             } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
                 continue;
             }
             break;
@@ -93,12 +94,10 @@ public class InputView {
         try {
             orderDate = Integer.parseInt(dateInput);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 날짜는 숫자입니다. 다시 입력해 주세요.");
             throw new IllegalArgumentException();
         }
 
         if (orderDate < 1 || 31 < orderDate) {
-            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             throw new IllegalArgumentException();
         }
 
