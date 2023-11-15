@@ -44,49 +44,66 @@ public class InputView {
 
     private Map<Menu,Integer> validateAndConvertInputToOrderMap(String orderInput) {
         List<String> menuOrders = Arrays.stream(orderInput.split(",")).toList();
-
         HashMap<Menu, Integer> orderMap = new HashMap<>();
-        boolean isOnlyDrink = true;
-        int orderCount = 0;
         for (String menuOrder : menuOrders) {
             List<String> order =  Arrays.stream(menuOrder.split("-")).toList();
+            int menuCount = validateAndConvertMenuCountInputToInt(order.get(1));
             String menuName = order.get(0);
-            int menuCount;
-            try {
-                menuCount = Integer.parseInt(order.get(1));
-            } catch (NumberFormatException ex) {
-                throw new IllegalArgumentException();
-            }
-
-            if (menuCount < 1) {
-                throw  new IllegalArgumentException();
-            }
-
             Menu menu = MenuBoard.getMenuByName(menuName);
-
-            if (menu.getType() != Menu.Type.DRINK) {
-                isOnlyDrink = false;
-            }
-
             if (orderMap.containsKey(menu)) {
                 throw new IllegalArgumentException();
             }
-
-            orderCount += menuCount;
             orderMap.put(menu, menuCount);
         }
+        validateOrderMap(orderMap);
+        return orderMap;
+    }
 
-        if (isOnlyDrink) {
-            System.out.println("[ERROR] 음료만 주문할 수 없습니다.");
-            throw new IllegalArgumentException();
+    private void validateOrderMap(Map<Menu, Integer> orderMap) {
+        validateOrderCountUnder20(orderMap);
+        validateOrderHasNotOnlyDrink(orderMap);
+    }
+
+    private void validateOrderCountUnder20(Map<Menu, Integer> orderMap) {
+        int orderCount = 0;
+
+        for (Menu menu : orderMap.keySet()) {
+            orderCount += orderMap.get(menu);
         }
 
         if (orderCount > 20) {
             System.out.println("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
             throw new IllegalArgumentException();
         }
+    }
 
-        return orderMap;
+    private void validateOrderHasNotOnlyDrink(Map<Menu, Integer> orderMap) {
+        boolean isOnlyDrink = true;
+        for (Menu menu : orderMap.keySet()) {
+            if (menu.getType() != Menu.Type.DRINK) {
+                isOnlyDrink = false;
+            }
+        }
+
+        if (isOnlyDrink) {
+            System.out.println("[ERROR] 음료만 주문할 수 없습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private int validateAndConvertMenuCountInputToInt(String menuCountInput) {
+        int menuCount;
+        try {
+            menuCount = Integer.parseInt(menuCountInput);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException();
+        }
+
+        if (menuCount < 1) {
+            throw  new IllegalArgumentException();
+        }
+
+        return menuCount;
     }
 
     private int validateAndConvertDateInputToOrderDate(String dateInput) {
