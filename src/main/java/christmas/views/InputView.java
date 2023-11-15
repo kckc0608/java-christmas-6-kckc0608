@@ -43,7 +43,7 @@ public class InputView {
             try {
                 menuCount = Integer.parseInt(order.get(1));
             } catch (NumberFormatException ex) {
-                // TODO : Print Error Message
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
                 throw new IllegalArgumentException();
             }
 
