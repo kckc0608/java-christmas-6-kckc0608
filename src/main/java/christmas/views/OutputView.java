@@ -52,6 +52,23 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printTotalAppliedEventsAmount(List<Event> appliedEvents) {
+        // 총 혜택 금액의 경우에는, 혜택 내역과 달리 금액이 있는지를 보는 거니까, 0원이면 없음을 출력하도록 하는 게 맞을 것 같다.
+        System.out.println("<총혜택 금액>");
+        int totalAppliedEventsAmount = 0;
+
+        for (Event event : appliedEvents) {
+            totalAppliedEventsAmount += event.getApplyAmount();
+        }
+
+        if (totalAppliedEventsAmount == 0) {
+            System.out.println("없음\n");
+            return;
+        }
+
+        System.out.println("-" + totalAppliedEventsAmount + "원\n");
+    }
+
     private String convertNumberToAmountFormattedString(int number) {
         return NumberFormat.getInstance().format(number);
     }
